@@ -20,5 +20,37 @@
             "brand_id": 5,
             "brand_name": "Smolder"
         }
+    ],
+    "categories": [
+        {
+            "category_id": 1,
+            "category_name": "Esporte e lazer"
+        },
+        {
+            "category_id": 2,
+            "category_name": "Casual"
+        },
+        {
+            "category_id": 3,
+            "category_name": "Utilitário"
+        },
+        {
+            "category_id": 4,
+            "category_name": "Corrida"
+        }
+    ],
+    "genders": [
+        {
+            "gender_id": 1,
+            "gender_name": "Masculino"
+        },
+        {
+            "gender_id": 2,
+            "gender_name": "Feminino"
+        },
+        {
+            "gender_id": 3,
+            "gender_name": "Unisex"
+        }
     ]
 }
