@@ -15,6 +15,9 @@ const PageProductsContainer = styled.div`
   & .content {
     margin-top: 40px;
   }
+  & label{
+    cursor: pointer;
+  }
 `; //vscode styled-components
 
 const PageProducts = () => {
@@ -38,6 +41,7 @@ const PageProducts = () => {
   const [categories, setCategories] = useState([]);
   const [genders, setGenders] = useState([]);
   const [filters, setFilters] = useState([]);
+  const [estado, setEstado] = useState([]);
 
   async function getBrands() {
     const response = await API.get("brands");
@@ -57,8 +61,13 @@ const PageProducts = () => {
   function checkSelectItems(e){
     let isSelected = e.target.checked;
     let value = e.target.value;
+    if(!isSelected){
+      setFilters((prevData) => {
+        return prevData.filter((item) => item != value);
+      });
+      return;
+    }
     setFilters([...filters, value]);
-    console.log(filters);
   }
 
   useEffect(() => {
@@ -109,7 +118,10 @@ const PageProducts = () => {
               <ul className="list-style-none">
                 {categories.map((categorias) => (
                   <li key={categorias.category_id} className="flex gap-3 mb-2">
-                    <Checkbox id={categorias.category_name} />
+                    <Checkbox id={categorias.category_name} value={categorias.category_name}
+                    onChange={(e) => checkSelectItems(e)}
+                    checked={filters.includes(categorias.category_name)}
+                    />
                     <label htmlFor={categorias.category_name}>
                       {categorias.category_name}
                     </label>
@@ -120,7 +132,10 @@ const PageProducts = () => {
               <ul className="list-style-none">
                 {genders.map((generos) => (
                   <li key={generos.gender_id} className="flex gap-3 mb-2">
-                    <Checkbox id={generos.gender_name} />
+                    <Checkbox id={generos.gender_name} value={generos.gender_name}
+                    onChange={(e) => checkSelectItems(e)}
+                    checked={filters.includes(generos.gender_name)}
+                    />
                     <label htmlFor={generos.gender_name}>
                       {generos.gender_name}
                     </label>
@@ -130,12 +145,19 @@ const PageProducts = () => {
               <h6 className="mb-2 mt-3">Estado</h6>
               <ul className="list-style-none">
                 <li className="flex gap-3 mb-2">
-                  <RadioButton id="novo" checked />
-                  <label htmlFor="novo">Novo</label>
+                  <RadioButton 
+                    id="novo"
+                    onChange={() => setEstado('novo')}
+                    checked={estado == 'novo'}
+                  />
+                  <label htmlFor="novo" onClick={() => setEstado('novo')}>Novo</label>
                 </li>
                 <li className="flex gap-3 mb-2">
-                  <RadioButton id="usado" />
-                  <label htmlFor="usado">Usado</label>
+                  <RadioButton 
+                      onChange={() => setEstado('usado')}
+                      checked={estado == 'usado'}
+                  />
+                  <label htmlFor="usado" onClick={() => setEstado('usado')}>Usado</label>
                 </li>
               </ul>
             </div>
