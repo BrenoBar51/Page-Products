@@ -136,7 +136,7 @@ const PageProducts = () => {
                     onChange={(e) => checkSelectItems(e)}
                     checked={filters.includes(generos.gender_name)}
                     />
-                    <label htmlFor={generos.gender_name}>
+                    <label htmlFor={generos.gender_name} onClick={(e) => checkSelectItems(e)}>
                       {generos.gender_name}
                     </label>
                   </li>
