@@ -4,6 +4,7 @@ import { Checkbox } from "primereact/checkbox";
 import { RadioButton } from "primereact/radiobutton";
 import { useEffect, useState } from "react";
 import { API } from "../../services";
+import Product from "../../components/product";
 
 const PageProductsContainer = styled.div`
   padding: 40px 100px;
@@ -162,7 +163,16 @@ const PageProducts = () => {
               </ul>
             </div>
           </div>
-          <div className="w-9">Cards</div>
+          <div className="w-9">
+            <Product 
+              classes="w-4"
+              name="nome do produto"
+              category_name="categoria"
+              discount="30"
+              price="200"
+              
+            />
+          </div>
         </div>
       </PageProductsContainer>
     </>
