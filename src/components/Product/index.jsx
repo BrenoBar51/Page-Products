@@ -8,8 +8,8 @@ const Product = ({ classes, name, categoryName, discount, price }) => {
           <div
             className="absolute font-bold px-2 py-2 border-round-2xl uppercase text-sm"
             style={{ backgroundColor: "#E7FF86" }}
-          >
-            {discount}% OFF
+            >
+              {discount}% OFF
           </div>
         )}
         <img
@@ -21,7 +21,12 @@ const Product = ({ classes, name, categoryName, discount, price }) => {
       <h6 className="mt-3 text-sm text-700">{categoryName}</h6>
       <h2 className="font-light text-800 mt-2 mb-2">{name}</h2>
       <h2>
-        <del className="font-light text-700">R${price}</del> R${price - (price / 100) * discount}
+            {
+                discount != 0 && (
+                    <del className="font-light text-700">R${price}</del>
+                )
+            }
+            R$ {price - ((price / 100) * discount)}
       </h2>
     </>
   );
