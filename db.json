@@ -56,9 +56,10 @@
     "products":[
         {
             "product_id": 1,
-            "product_name": "produto 1",
+            "product_name": "Nike Air",
             "product_price": 200,
             "product_discount": 30,
+            "product_image": "src/components/product/assets/tenis.png",
             "category_id": 1,
             "category_name":"Esporte e lazer",
             "brand_id": 1,
@@ -69,9 +70,10 @@
         },
         {
             "product_id": 2,
-            "product_name": "produto 2",
+            "product_name": "Olimpikus Sports",
             "product_price": 200,
             "product_discount": 30,
+            "product_image": "src/components/Product/assets/tenis-pisa-em-mendigo.png",
             "category_id": 2,
             "category_name":"Corrida",
             "brand_id": 2,
@@ -82,16 +84,45 @@
         },
         {
             "product_id": 3,
-            "product_name": "produto 3",
+            "product_name": "Balenciaga",
             "product_price": 200,
             "product_discount": 0,
-            "category_id": 1,
+            "product_image": "src/components/Product/assets/tenis-ultraboost.png",
+            "category_id": 2,
             "category_name":"Casual",
             "brand_id": 2,
             "brand_name":"Balenciaga",
-            "gender_id": 1,
+            "gender_id": 2,
             "gender_name":"Feminino",
             "review_rate": 4.5
+        },
+        {
+            "product_id": 4,
+            "product_name": "Smolder Crazy kick mendigo's marmita",
+            "product_price": 2000,
+            "product_discount": 10,
+            "product_image": "src/components/Product/assets/tenis-crazy.png",
+            "category_id": 1,
+            "category_name":"Esporte e lazer",
+            "brand_id": 5,
+            "brand_name":"Smolder",
+            "gender_id": 1,
+            "gender_name":"Masculino",
+            "review_rate": 5
+        },
+        {
+            "product_id": 5,
+            "product_name": "Tênis Pica",
+            "product_price": 5000,
+            "product_discount": 3,
+            "product_image": "src/components/Product/assets/tenis-pica1.jpg",
+            "category_id": 2,
+            "category_name":"Casual",
+            "brand_id": 5,
+            "brand_name":"Smolder",
+            "gender_id": 1,
+            "gender_name":"Masculino",
+            "review_rate": 5
         }
     ]
 }
