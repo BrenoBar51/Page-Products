@@ -56,7 +56,7 @@
     "products":[
         {
             "product_id": 1,
-            "product_name": "Nike Air",
+            "product_name": "Air",
             "product_price": 200,
             "product_discount": 30,
             "product_image": "src/components/product/assets/tenis.png",
@@ -66,12 +66,12 @@
             "brand_name":"Nike",
             "gender_id": 1,
             "gender_name":"Masculino",
-            "review_rate": 5
+            "review_rate": 3
         },
         {
             "product_id": 2,
-            "product_name": "Olimpikus Sports",
-            "product_price": 200,
+            "product_name": "Sports",
+            "product_price": 700,
             "product_discount": 30,
             "product_image": "src/components/Product/assets/tenis-pisa-em-mendigo.png",
             "category_id": 2,
@@ -84,7 +84,7 @@
         },
         {
             "product_id": 3,
-            "product_name": "Balenciaga",
+            "product_name": "Ultra Style",
             "product_price": 200,
             "product_discount": 0,
             "product_image": "src/components/Product/assets/tenis-ultraboost.png",
@@ -98,7 +98,7 @@
         },
         {
             "product_id": 4,
-            "product_name": "Smolder Crazy kick mendigo's marmita",
+            "product_name": "Crazy kick mendigo's marmita",
             "product_price": 2000,
             "product_discount": 10,
             "product_image": "src/components/Product/assets/tenis-crazy.png",
@@ -108,7 +108,7 @@
             "brand_name":"Smolder",
             "gender_id": 1,
             "gender_name":"Masculino",
-            "review_rate": 5
+            "review_rate": 4.8
         },
         {
             "product_id": 5,

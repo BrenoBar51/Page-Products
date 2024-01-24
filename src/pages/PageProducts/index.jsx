@@ -16,7 +16,7 @@ const PageProductsContainer = styled.div`
   & .content {
     margin-top: 40px;
   }
-  & label{
+  & label {
     cursor: pointer;
   }
 `; //vscode styled-components
@@ -44,7 +44,7 @@ const PageProducts = () => {
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState([]);
   const [itensFiltrados, setItensFiltrados] = useState([]);
-  const [estado, setEstado] = useState('');
+  const [estado, setEstado] = useState("");
 
   async function getBrands() {
     const response = await API.get("brands");
@@ -64,12 +64,14 @@ const PageProducts = () => {
   async function getProducts() {
     const response = await API.get("products");
     setProducts(response.data);
+    setItensFiltrados([...response.data.sort((a, b) => b.review_rate - a.review_rate)
+    ]);
   }
 
-  function checkSelectItems(e){
+  function checkSelectItems(e) {
     let isSelected = e.target.checked;
     let value = e.target.value;
-    if(!isSelected){
+    if (!isSelected) {
       setFilters((prevData) => {
         return prevData.filter((item) => item != value);
       });
@@ -78,27 +80,41 @@ const PageProducts = () => {
     setFilters([...filters, value]);
   }
 
-  function filterItens(filterType){
-    switch(filterType){
-      case 1:
-        return setItensFiltrados(products.sort((a, b) => b.product_rate - a.product_rate));
-      case 2:
-        return setItensFiltrados(products.sort((a, b) => b.product_price - a.product_price));
-      case 3:
-        return setItensFiltrados(products.sort((a, b) => a.product_price - b.product_price));
-    }
-  }
-  
-  useEffect(() => {
-    filterItens(ordenacao)
-  }, [ordenacao]);
-
   useEffect(() => {
     getBrands();
     getCategories();
     getGenders();
     getProducts();
   }, []);
+
+  useEffect(() => {
+    switch (ordenacao) {
+      case 1:
+        setItensFiltrados([
+          ...itensFiltrados.sort((a, b) => b.review_rate - a.review_rate),
+        ]);
+        break;
+      case 2:
+        setItensFiltrados([
+          ...itensFiltrados.sort((a, b) => a.product_price - b.product_price),
+        ]);
+        break;
+      case 3:
+        setItensFiltrados([
+          ...itensFiltrados.sort((a, b) => b.product_price - a.product_price),
+        ]);
+        break;
+    }
+  }, [ordenacao, setItensFiltrados]);
+
+  useEffect(() => {
+    if (filters.length > 0) {
+      const busca = products.filter(p => filters.some(f => f == p.brand_name));
+      setItensFiltrados([...busca]);
+      return;
+    }
+    setItensFiltrados([...products.sort((a, b) => b.review_rate - a.review_rate)]);
+  }, [filters, products, setItensFiltrados]);
 
   return (
     <>
@@ -115,7 +131,7 @@ const PageProducts = () => {
                 options={tiposDeOrdenacao}
                 optionLabel="name"
                 optionValue="value"
-                onChange={e => setOrdenacao(e.target.value)}
+                onChange={(e) => setOrdenacao(e.target.value)}
                 className="border-0 bg-transparent"
               />
             </h6>
@@ -130,9 +146,11 @@ const PageProducts = () => {
               <ul className="list-style-none">
                 {brands.map((marca) => (
                   <li key={marca.brand_id} className="flex gap-3 mb-2">
-                    <Checkbox id={marca.brand_name} value={marca.brand_name}
-                    onChange={(e) => checkSelectItems(e)}
-                    checked={filters.includes(marca.brand_name)}
+                    <Checkbox
+                      id={marca.brand_name}
+                      value={marca.brand_name}
+                      onChange={(e) => checkSelectItems(e)}
+                      checked={filters.includes(marca.brand_name)}
                     />
                     <label htmlFor={marca.brand_name}>{marca.brand_name}</label>
                   </li>
@@ -142,9 +160,11 @@ const PageProducts = () => {
               <ul className="list-style-none">
                 {categories.map((categorias) => (
                   <li key={categorias.category_id} className="flex gap-3 mb-2">
-                    <Checkbox id={categorias.category_name} value={categorias.category_name}
-                    onChange={(e) => checkSelectItems(e)}
-                    checked={filters.includes(categorias.category_name)}
+                    <Checkbox
+                      id={categorias.category_name}
+                      value={categorias.category_name}
+                      onChange={(e) => checkSelectItems(e)}
+                      checked={filters.includes(categorias.category_name)}
                     />
                     <label htmlFor={categorias.category_name}>
                       {categorias.category_name}
@@ -156,11 +176,16 @@ const PageProducts = () => {
               <ul className="list-style-none">
                 {genders.map((generos) => (
                   <li key={generos.gender_id} className="flex gap-3 mb-2">
-                    <Checkbox id={generos.gender_name} value={generos.gender_name}
-                    onChange={(e) => checkSelectItems(e)}
-                    checked={filters.includes(generos.gender_name)}
+                    <Checkbox
+                      id={generos.gender_name}
+                      value={generos.gender_name}
+                      onChange={(e) => checkSelectItems(e)}
+                      checked={filters.includes(generos.gender_name)}
                     />
-                    <label htmlFor={generos.gender_name} onClick={(e) => checkSelectItems(e)}>
+                    <label
+                      htmlFor={generos.gender_name}
+                      onClick={(e) => checkSelectItems(e)}
+                    >
                       {generos.gender_name}
                     </label>
                   </li>
@@ -169,40 +194,42 @@ const PageProducts = () => {
               <h6 className="mb-2 mt-3">Estado</h6>
               <ul className="list-style-none">
                 <li className="flex gap-3 mb-2">
-                  <RadioButton 
+                  <RadioButton
                     id="novo"
-                    onChange={() => setEstado('novo')}
-                    checked={estado == 'novo'}
+                    onChange={() => setEstado("novo")}
+                    checked={estado == "novo"}
                   />
-                  <label htmlFor="novo" onClick={() => setEstado('novo')}>Novo</label>
+                  <label htmlFor="novo" onClick={() => setEstado("novo")}>
+                    Novo
+                  </label>
                 </li>
                 <li className="flex gap-3 mb-2">
-                  <RadioButton 
-                      onChange={() => setEstado('usado')}
-                      checked={estado == 'usado'}
+                  <RadioButton
+                    onChange={() => setEstado("usado")}
+                    checked={estado == "usado"}
                   />
-                  <label htmlFor="usado" onClick={() => setEstado('usado')}>Usado</label>
+                  <label htmlFor="usado" onClick={() => setEstado("usado")}>
+                    Usado
+                  </label>
                 </li>
               </ul>
             </div>
           </div>
           <div className="w-9 flex flex-wrap gap-3">
-            {
-              products.map(p => (
-                <Product
-                  key={p.product_id}
-                  name={p.product_name}
-                  image={p.product_image}
-                  categoryName={p.categoryName}
-                  discount={p.product_discount}
-                  price={p.product_price}
-                />
-              ))
-            }
+            {itensFiltrados.map((p) => (
+              <Product
+                key={p.product_id}
+                name={`${p.brand_name} ${p.product_name}`}
+                image={p.product_image}
+                categoryName={p.categoryName}
+                discount={p.product_discount}
+                price={p.product_price}
+              />
+            ))}
           </div>
         </div>
       </PageProductsContainer>
     </>
-  )
-}
+  );
+};
 export default PageProducts;
