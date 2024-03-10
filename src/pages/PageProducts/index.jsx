@@ -3,8 +3,8 @@ import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { RadioButton } from "primereact/radiobutton";
 import { useEffect, useState } from "react";
-import { API } from "../../services";
-import Product from "../../components/product";
+import { API } from "../../services/index";
+import Product from "../../components/Product/index";
 
 const PageProductsContainer = styled.div`
   padding: 40px 100px;

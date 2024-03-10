@@ -1,7 +1,7 @@
 const Product = ({ classes, name, image, categoryName, discount, price }) => {
   return (
     <>
-      <div className={classes} style={{ width: 'calc(33.333% - 11px)'}}>
+      <div className={classes} style={{ width: 'calc(33.333% - 11px)' }}>
         <div
           className={`bg-white p-3 border-round-sm shadow-3 relative ${classes}`}
         >
@@ -13,7 +13,7 @@ const Product = ({ classes, name, image, categoryName, discount, price }) => {
               {discount}% OFF
             </div>
           )}
-          <img className="w-full" style={{height: '266px', objectFit:'contain'}} src={image} alt="Tenis"/>
+          <img className="w-full" style={{ height: '266px', objectFit: 'contain' }} src={image} alt="Tenis" />
         </div>
         <h6 className="mt-3 text-sm text-700">{categoryName}</h6>
         <h2 className="font-light text-800 mt-2 mb-2">{name}</h2>
